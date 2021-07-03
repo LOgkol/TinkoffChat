@@ -7,6 +7,8 @@
 
 import UIKit
 
+var liveApp: Bool = true
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -16,34 +18,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //загрузка завершилась
-        LifeCycleApp.shared.printLife("\(#function): загрузка завершилась")
+        applicationLive(from: "Not running", to: "Inactive")
         return true
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        LifeCycleApp.shared.printLife("\(#function): стало активным")
+        applicationLive(from: "Inactive", to: "Acrive")
         //стало активным
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
-        LifeCycleApp.shared.printLife("\(#function): собирается стать не активным")
+        applicationLive(from: "Acrive", to: "Inactive")
         //собирается стать не активным
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        LifeCycleApp.shared.printLife("\(#function): стало не активным")
+        applicationLive(from: "Inactive", to: "Backround")
         //стало не активным
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
-        LifeCycleApp.shared.printLife("\(#function): собирается вернуться в активное")
+        applicationLive(from: "Backround", to: "Inactive")
         // собирается вернуться в активное
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        LifeCycleApp.shared.printLife("\(#function): завершил работу")
+        applicationLive(from: "Backround", to: "Suspend")
         //завершил работу
     }
     
+    func applicationLive(from: String, to: String, applicationFunc: String = #function) {
+        if liveApp == true {
+            print("Application moved from <\(from)> to <\(to)>, \(applicationFunc)")
+        }
+    }
 }
 
