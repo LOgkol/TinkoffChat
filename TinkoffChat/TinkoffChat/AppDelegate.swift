@@ -7,7 +7,7 @@
 
 import UIKit
 
-var liveApp: Bool = true
+var liveApp: Bool = false
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {

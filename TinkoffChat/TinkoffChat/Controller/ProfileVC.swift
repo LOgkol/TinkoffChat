@@ -6,31 +6,43 @@
 //
 
 import UIKit
-import PhotosUI
+//import AudioToolbox
 
 var logPVC: Bool = false
 
-class ProfileViewController: UIViewController {
+class ProfileVC: UIViewController {
     
+    @IBOutlet weak var imageView: UIView?
     @IBOutlet weak var imageProfile: UIImageView?
     @IBOutlet weak var nameProfile: UILabel?
     @IBOutlet weak var descriptionProfile: UILabel?
     @IBOutlet weak var textImage: UILabel?
     @IBOutlet weak var editingButton: UIButton?
     
+    @IBAction func editingButton(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "ВОУ ВОУ", message: "По причине криворукости разработчика, кнопка временно не работает.Как только научится - так сделает", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ок", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        
+        tapticFeedback()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let space = " "
         
         guard let imageProfile = imageProfile else { return }
         imageProfile.layer.cornerRadius = imageProfile.frame.size.width / 2
         imageProfile.clipsToBounds = true
         
-        let tapImage = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.tapImageView))
+        let tapImage = UITapGestureRecognizer(target: self, action: #selector(ProfileVC.tapImageView))
         imageProfile.addGestureRecognizer(tapImage)
         imageProfile.isUserInteractionEnabled = true
         
         guard let nameProfile = nameProfile else { return }
-        nameProfile.text = "Alexsandr Dzhegutanov"
+        nameProfile.text = "\(space)Alexsandr Dzhegutanov\(space)"
         nameProfile.layer.cornerRadius = 4
         nameProfile.layer.borderWidth = 1
         nameProfile.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -49,12 +61,31 @@ class ProfileViewController: UIViewController {
         editingButton.clipsToBounds = true
         
         settingImage()
-        viewLive(frame:":\(String(describing: editingButton.frame))")
+    }
+    
+//        override func viewDidAppear(_ animated: Bool) {
+//            super.viewDidAppear(animated)
+//            let screenShot = self.imageView?.takeScreenshot()
+//            image = (screenShot?.resize(CGSize.init(width: 35, height: 35)))!
+//            print("screenShot\(image)")
+//        }
+    
+    //срабатывает перед закрытием вью
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        let screenShot = self.imageView?.takeScreenshot()
+        image = (screenShot?.resize(CGSize.init(width: 35, height: 35)))!
+    }
+    
+    func tapticFeedback() {
+        let tapticFeedback = UINotificationFeedbackGenerator()
+        tapticFeedback.notificationOccurred(.success)
     }
     
     @objc
     func tapImageView() {
         settingImageAlert()
+        tapticFeedback()
     }
     
     func settingImage () {
@@ -67,40 +98,9 @@ class ProfileViewController: UIViewController {
         textImage.isHidden = false
         imageProfile?.image = nil
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        guard let editingButton = editingButton else { return }
-        viewLive(frame:":\(String(describing: editingButton.frame))")
-    }
-    
-    /*
-     Размеры фреймов кнопки "редактировать" в методах viewDidLoad и viewDidAppear отличаются потому что верстка в сториборде
-     происходит на размере устройства iphone 11 или 11Pro. Тогда как по заданию тестировать приложение мы должны на устройстве iphone
-     iphone Se2. Если же в сториборде выбрать устройство iphone Se2 - frame кнопки "редактировать в 2-х выше перечисленных
-     методах будет одинаков."
-     */
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        if logPVC == true {
-            if let editingButton = editingButton {
-                print(editingButton.frame)
-            } else {
-                print("no value")
-            }
-        }
-    }
-    
-    func viewLive(frame: String, viewFunc: String = #function) {
-        if logPVC == true {
-            print("\(viewFunc), frame: \(frame)")
-        }
-    }
-    
 }
 
-extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func settingImageAlert() {
         
         let allertImage = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -108,6 +108,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         let photo = UIAlertAction(title: "Сделать фото", style: .default) {_ in
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 self.settingAllertImage(source: .camera)
+                self.tapticFeedback()
             }
             else {
                 let alert = UIAlertController(title: "Ошибка", message: "На устройстве отсутствует камера", preferredStyle: .alert)
@@ -118,13 +119,24 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         
         let gallery = UIAlertAction(title: "Установить из галереи", style: .default) {_ in
             self.settingAllertImage(source: .photoLibrary)
+            self.tapticFeedback()
         }
         
         let delete = UIAlertAction(title: "Удалить", style: .destructive) {_ in
-            self.settingImage()
+            let alert = UIAlertController(title: "Вы действительно хотите удалить аватарку?", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Да", style: .destructive, handler: { _ in
+                self.settingImage()
+                self.tapticFeedback()
+            }))
+            alert.addAction(UIAlertAction(title: "Нет", style: .cancel, handler: { _ in
+                self.tapticFeedback()
+            }))
+            self.present(alert, animated: true)
         }
         
-        let cancel = UIAlertAction(title: "Отмена", style: .cancel)
+        let cancel = UIAlertAction(title: "Отмена", style: .cancel) { _ in
+            self.tapticFeedback()
+        }
         
         allertImage.addAction(photo)
         allertImage.addAction(gallery)
@@ -155,5 +167,38 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         dismiss(animated: true)
         
         textImage?.isHidden = true
+    }
+}
+
+extension UIView {
+    func takeScreenshot() -> UIImage {
+        
+        // Begin context
+        UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, UIScreen.main.scale)
+        
+        // Draw view in that context
+        drawHierarchy(in: self.bounds, afterScreenUpdates: true)
+        
+        // And finally, get image
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        if (image != nil)
+        {
+            return image!
+        }
+        return UIImage()
+    }
+}
+
+extension UIImage {
+    func resize(_ size: CGSize) -> UIImage {
+        var rect = CGRect.zero
+        rect.size = size
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        draw(in: rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image!
     }
 }
