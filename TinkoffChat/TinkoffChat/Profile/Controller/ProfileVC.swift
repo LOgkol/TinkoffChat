@@ -19,6 +19,10 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var textImage: UILabel?
     @IBOutlet weak var editingButton: UIButton?
     
+    @IBAction func closedProfileVC(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func editingButton(_ sender: Any) {
         
         let alert = UIAlertController(title: "ВОУ ВОУ", message: "По причине криворукости разработчика, кнопка временно не работает.Как только научится - так сделает", preferredStyle: .alert)
@@ -62,13 +66,6 @@ class ProfileVC: UIViewController {
         
         settingImage()
     }
-    
-//        override func viewDidAppear(_ animated: Bool) {
-//            super.viewDidAppear(animated)
-//            let screenShot = self.imageView?.takeScreenshot()
-//            image = (screenShot?.resize(CGSize.init(width: 35, height: 35)))!
-//            print("screenShot\(image)")
-//        }
     
     //срабатывает перед закрытием вью
     override func viewWillDisappear(_ animated: Bool) {

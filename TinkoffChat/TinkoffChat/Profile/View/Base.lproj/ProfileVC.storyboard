@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7Kb-7S-uJ0">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--ProfileVC-->
+        <!--Профиль-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="ProfileVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ProfileVC" customModule="TinkoffChat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="profileVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ProfileVC" customModule="TinkoffChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -94,7 +94,14 @@
                             <constraint firstItem="nWh-Ki-XrP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="x6D-Vz-g0u"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="VWm-QR-uqw"/>
+                    <navigationItem key="navigationItem" title="Профиль" id="VWm-QR-uqw">
+                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="stop" id="rdK-fj-0Od">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="closedProfileVC:" destination="BYZ-38-t0r" id="24w-iG-qqs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="descriptionProfile" destination="8X8-38-nLt" id="DNA-UA-vOU"/>
                         <outlet property="editingButton" destination="nWh-Ki-XrP" id="KCY-Lg-jTU"/>
@@ -106,25 +113,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1992.8" y="18.440779610194905"/>
+            <point key="canvasLocation" x="4810.3999999999996" y="18.440779610194905"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="QCc-aj-072">
+        <scene sceneID="djP-KX-QsZ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Say-NO-beg" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gQZ-Fl-t8w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7Kb-7S-uJ0" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="46f-Lg-OBF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="58T-Z5-B30">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="WZT-nh-Kef"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="yMM-MA-Weg"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RI6-c5-NCq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1053.5999999999999" y="18.440779610194905"/>
+            <point key="canvasLocation" x="3871.1999999999998" y="18.440779610194905"/>
         </scene>
     </scenes>
     <resources>

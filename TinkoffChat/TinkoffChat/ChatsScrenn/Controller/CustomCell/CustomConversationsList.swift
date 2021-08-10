@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomTableViewCell: UITableViewCell, ConversationCellConfiguration{
+class CustomConversationsList: UITableViewCell, ConversationCellConfiguration{
     
     @IBOutlet weak var imageCell: UIImageView?
     @IBOutlet weak var nameCell: UILabel?
@@ -24,7 +24,6 @@ class CustomTableViewCell: UITableViewCell, ConversationCellConfiguration{
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
-        // Configure the view for the selected state
     }
     
     var name: String? = "" {
@@ -72,7 +71,7 @@ class CustomTableViewCell: UITableViewCell, ConversationCellConfiguration{
         }
     }
     
-    private func formattedDate(_ date: Date?) -> String? {
+    func formattedDate(_ date: Date?) -> String? {
         guard let date = date else {
             return ""
         }
@@ -88,5 +87,22 @@ class CustomTableViewCell: UITableViewCell, ConversationCellConfiguration{
         
         return dateFormatter.string(from: date)
     }
+    
+}
 
+extension Date {
+    
+    init?(from: String) {
+        
+        guard !from.isEmpty else {
+            return nil
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
+        
+        guard let date = dateFormatter.date(from: from) else { return nil }
+        
+        self.init(timeInterval: 0, since: date)
+    }
 }
