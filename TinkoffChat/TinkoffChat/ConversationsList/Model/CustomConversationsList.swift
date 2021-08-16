@@ -9,41 +9,52 @@ import UIKit
 
 class CustomConversationsList: UITableViewCell, ConversationCellConfiguration{
     
+    @IBOutlet var cellCustomView: [UIView]?
+    
     @IBOutlet weak var imageCell: UIImageView?
+    @IBOutlet weak var imageName: UILabel? {
+        didSet {
+            imageName?.isHidden = true
+        }
+    }
+    @IBOutlet weak var checkOnlineView: UIView!
+    
     @IBOutlet weak var nameCell: UILabel?
     @IBOutlet weak var messageCell: UILabel?
     @IBOutlet weak var dataCell: UILabel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        guard let cellCustomView = cellCustomView else { return }
         guard let imageCell = imageCell else { return }
+        
         imageCell.layer.cornerRadius = imageCell.frame.size.width / 2
-        imageCell.clipsToBounds = true
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+        
+        CustomView.addRadiusWidth(views: cellCustomView, width: 2)
         
     }
     
     var name: String? = "" {
         didSet {
             self.nameCell?.text = name
+            nameCell?.textColor = Theme.settingTheme.textColor
         }
     }
     
     var message: String? = "" {
         didSet {
             self.messageCell?.text = message
+            messageCell?.textColor = Theme.settingTheme.textColor
         }
     }
     
     var online: Bool? {
         didSet{
             if online == false {
-                backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                checkOnlineView.isHidden = true
             } else {
-                backgroundColor = #colorLiteral(red: 0.9994240403, green: 0.9855536819, blue: 0, alpha: 1)
+                checkOnlineView.isHidden = false
             }
         }
     }
@@ -61,13 +72,14 @@ class CustomConversationsList: UITableViewCell, ConversationCellConfiguration{
     
     var image: String? {
         didSet {
-            imageCell?.image = UIImage(named: image ?? "placeholderUser")
+            imageCell?.image = UIImage(named: image ?? "")
         }
     }
     
     var date: Date? {
         didSet {
             dataCell?.text = formattedDate(date)
+            dataCell?.textColor = Theme.settingTheme.textColor
         }
     }
     

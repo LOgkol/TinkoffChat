@@ -9,6 +9,9 @@ import UIKit
 
 class CustomConversationCell: UITableViewCell, MessageCellConfiguration {
     
+    @IBOutlet weak var recipientCellView: UIView!
+    @IBOutlet weak var senderCellView: UIView!
+    
     @IBOutlet weak var messageLabel: UILabel!
     
     var messageText: String? {

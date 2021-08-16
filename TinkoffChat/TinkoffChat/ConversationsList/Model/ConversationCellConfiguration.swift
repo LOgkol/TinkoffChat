@@ -29,7 +29,7 @@ var conversationDateArray = [
     
     // MARK: Online
     [ConversationModel(online: true, hasUnreadMessages: false, name: "Артем", message: "Yamaha r6 very good", date: Date(timeIntervalSinceNow: 0), image: "yamahaR6"),
-     ConversationModel(online: true, hasUnreadMessages: false, name: "Арно", message: "Постановка в Алтезу или перекладка в Форд?🤔", date: Date(timeIntervalSinceNow: 0), image: "drift"),
+     ConversationModel(online: true, hasUnreadMessages: false, name: "Арно", message: "Постановка в Алтезу или перекладка в Форд?🤔", date: Date(timeIntervalSinceNow: 0), image: nil),
      ConversationModel(online: true, hasUnreadMessages: false, name: "Боря", message: "DRIFT KING", date: Date(timeIntervalSinceNow: 0), image: "DriftSiera"),
      ConversationModel(online: true, hasUnreadMessages: false, name: "Алекс", message: "Hp босса 20%! Держимся ЗА ОРДУ!!!", date: Date(timeIntervalSinceNow: 0), image: "Trall"),
      ConversationModel(online: true, hasUnreadMessages: false, name: "Маша", message: "Ахах, в универе скучно без тебя:(", date: Date(timeIntervalSinceNow: 0), image: "finUniver"),
