@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -29,7 +30,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drift" translatesAutoresizingMaskIntoConstraints="NO" id="zc2-gA-qwF">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zc2-gA-qwF">
                         <rect key="frame" x="5" y="13" width="80" height="80"/>
                         <color key="backgroundColor" red="0.89496898650000001" green="0.90891593690000005" blue="0.1692225933" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -38,38 +39,81 @@
                             <constraint firstAttribute="width" constant="80" id="gt8-J2-QK9"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p10-HZ-a2G">
+                        <rect key="frame" x="5" y="13" width="80" height="79"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="p10-HZ-a2G" secondAttribute="height" multiplier="80:79" id="3RW-YE-wdq"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57q-uh-E92">
                         <rect key="frame" x="342.5" y="5" width="26.5" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HJ5-JN-x6i">
+                        <rect key="frame" x="70" y="78" width="15" height="15"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G7Q-9G-DMB">
+                                <rect key="frame" x="2.5" y="2.5" width="10" height="10"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="10" id="80K-hj-7Pl"/>
+                                    <constraint firstAttribute="height" constant="10" id="HeA-mY-Rab"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="G7Q-9G-DMB" firstAttribute="centerX" secondItem="HJ5-JN-x6i" secondAttribute="centerX" id="0Du-JQ-rrC"/>
+                            <constraint firstAttribute="width" constant="15" id="7Rc-bW-WwY"/>
+                            <constraint firstItem="G7Q-9G-DMB" firstAttribute="centerY" secondItem="HJ5-JN-x6i" secondAttribute="centerY" id="c12-eJ-2hg"/>
+                            <constraint firstAttribute="height" constant="15" id="gJb-Ap-kCc"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="9UI-7f-hw8" firstAttribute="leading" secondItem="zc2-gA-qwF" secondAttribute="trailing" constant="8" id="0rw-kr-CdN"/>
                     <constraint firstItem="zc2-gA-qwF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="3mH-7m-R6W"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="HJ5-JN-x6i" secondAttribute="bottom" constant="3" id="4i3-z1-Vng"/>
+                    <constraint firstItem="p10-HZ-a2G" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="5Gi-C6-aJb"/>
                     <constraint firstAttribute="bottom" secondItem="H9B-ve-vbW" secondAttribute="bottom" constant="15" id="CT2-Bi-2d1"/>
                     <constraint firstItem="zc2-gA-qwF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="DZa-qF-crU"/>
                     <constraint firstAttribute="trailing" secondItem="H9B-ve-vbW" secondAttribute="trailing" constant="9" id="M9l-O7-F8S"/>
                     <constraint firstItem="9UI-7f-hw8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="QUc-Xr-jri"/>
                     <constraint firstItem="H9B-ve-vbW" firstAttribute="top" secondItem="9UI-7f-hw8" secondAttribute="bottom" constant="8.5" id="RpT-NT-bJX"/>
+                    <constraint firstItem="H9B-ve-vbW" firstAttribute="leading" secondItem="HJ5-JN-x6i" secondAttribute="trailing" constant="8" id="WAa-Jn-fgX"/>
                     <constraint firstItem="H9B-ve-vbW" firstAttribute="leading" secondItem="zc2-gA-qwF" secondAttribute="trailing" constant="8" id="ZeE-po-VCa"/>
                     <constraint firstAttribute="trailing" secondItem="57q-uh-E92" secondAttribute="trailing" constant="5" id="ckV-O3-MgA"/>
+                    <constraint firstItem="p10-HZ-a2G" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="gMa-2E-DyI"/>
+                    <constraint firstItem="H9B-ve-vbW" firstAttribute="leading" secondItem="p10-HZ-a2G" secondAttribute="trailing" constant="8" id="k0g-dQ-NVw"/>
                     <constraint firstItem="57q-uh-E92" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="qyb-Tm-5tq"/>
                     <constraint firstItem="57q-uh-E92" firstAttribute="leading" secondItem="9UI-7f-hw8" secondAttribute="trailing" constant="8" id="uOv-Rg-ihj"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="checkOnlineView" destination="HJ5-JN-x6i" id="q3X-Gp-HMO"/>
                 <outlet property="dataCell" destination="57q-uh-E92" id="gKc-y8-cT9"/>
                 <outlet property="imageCell" destination="zc2-gA-qwF" id="kag-6F-Rsg"/>
+                <outlet property="imageName" destination="p10-HZ-a2G" id="VbG-l9-B4T"/>
                 <outlet property="messageCell" destination="H9B-ve-vbW" id="2cP-hD-GZO"/>
                 <outlet property="nameCell" destination="9UI-7f-hw8" id="Tbh-H9-ipK"/>
+                <outletCollection property="cellCustomView" destination="HJ5-JN-x6i" collectionClass="NSMutableArray" id="cOc-57-Fbj"/>
+                <outletCollection property="cellCustomView" destination="G7Q-9G-DMB" collectionClass="NSMutableArray" id="eE9-UD-pz1"/>
             </connections>
             <point key="canvasLocation" x="286.95652173913044" y="107.47767857142857"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="drift" width="640" height="360"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
