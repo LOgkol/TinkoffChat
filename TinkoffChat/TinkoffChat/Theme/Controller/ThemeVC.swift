@@ -50,7 +50,7 @@ class ThemeVC: UIViewController {
     
     @objc func tapClassicView() {
         print("TapClassicView")
-        
+        saveTheme(theme: .classic)
         self.themeClosure?(ClassicTheme())
         
         classicView.layer.borderColor = #colorLiteral(red: 0, green: 0.46, blue: 0.89, alpha: 1)
@@ -60,7 +60,7 @@ class ThemeVC: UIViewController {
     
     @objc func tapDayView() {
         print("tapDayView")
-        
+        saveTheme(theme: .day)
         self.themeClosure?(DayTheme())
         
         classicView.layer.borderColor = #colorLiteral(red: 0.5921568627, green: 0.5921568627, blue: 0.5921568627, alpha: 1)
@@ -70,7 +70,7 @@ class ThemeVC: UIViewController {
     
     @objc func tapNightView() {
         print("tapNightView")
-        
+        saveTheme(theme: .night)
         self.themeClosure?(NightTheme())
         
         classicView.layer.borderColor = #colorLiteral(red: 0.5921568627, green: 0.5921568627, blue: 0.5921568627, alpha: 1)
@@ -84,5 +84,16 @@ class ThemeVC: UIViewController {
         dayLabel.textColor = Theme.settingTheme.textColor
         nightLable.textColor = Theme.settingTheme.textColor
         viewDidLoad()
+    }
+    
+    func saveTheme(theme: CurrentTheme) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(theme.rawValue, forKey: "theme")
+    }
+    
+    enum CurrentTheme: String {
+        case classic = "classic"
+        case day = "day"
+        case night = "night"
     }
 }

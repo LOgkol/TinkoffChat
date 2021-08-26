@@ -27,4 +27,6 @@ class DayTheme: ThemeModel {
     var senderText: UIColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     //цвет текста сообщения список диалогов
     var listText: UIColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    
+    var borderColor: CGColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 }

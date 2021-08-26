@@ -36,8 +36,6 @@ class ProfileVC: UIViewController {
         nameProfile.text = UserProfile.shared.name
 
         descriptionProfile.text = UserProfile.shared.description
-        
-        CustomView.addBorderColorLabel(labels: [nameProfile,descriptionProfile,], borderWidth: 1, borderColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
       
         CustomView.addBorderColorButton(buttons: [editingButton], borderWidth: 1, borderColor: #colorLiteral(red: 0.1051317826, green: 0.533177197, blue: 0.9983835816, alpha: 1))
         
@@ -75,6 +73,7 @@ class ProfileVC: UIViewController {
         descriptionProfile.textColor = Theme.settingTheme.textColor
         self.navigationController?.navigationBar.barStyle = Theme.settingTheme.navigationBarStyle
         closerThemeProfileVC.tintColor = Theme.settingTheme.textColor
+        CustomView.addBorderColorLabel(labels: [nameProfile,descriptionProfile,], borderWidth: 1, borderColor: Theme.settingTheme.borderColor)
     }
 }
 

@@ -28,4 +28,6 @@ protocol ThemeModel {
     var senderText: UIColor { get }
     //цвет текста сообщения список диалогов
     var listText: UIColor { get }
+    
+    var borderColor: CGColor { get }
 }

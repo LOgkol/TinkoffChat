@@ -19,38 +19,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //загрузка завершилась
         applicationLive(from: "Not running", to: "Inactive")
+        
+        let theme = UserDefaults.standard.string(forKey: "theme")
+        
+        switch theme {
+        case "classic":
+            Theme.settingTheme = ClassicTheme()
+        case "day":
+            Theme.settingTheme = DayTheme()
+        case "night":
+            Theme.settingTheme = NightTheme()
+        default:
+            Theme.settingTheme = ClassicTheme()
+        }
+        
         return true
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         applicationLive(from: "Inactive", to: "Acrive")
-        //стало активным
     }
     
-    func applicationWillResignActive(_ application: UIApplication) {
-        applicationLive(from: "Acrive", to: "Inactive")
-        //собирается стать не активным
-    }
-    
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        applicationLive(from: "Inactive", to: "Backround")
-        //стало не активным
-    }
-    
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        applicationLive(from: "Backround", to: "Inactive")
-        // собирается вернуться в активное
-    }
-    
-    func applicationWillTerminate(_ application: UIApplication) {
-        applicationLive(from: "Backround", to: "Suspend")
-        //завершил работу
-    }
-    
-    func applicationLive(from: String, to: String, applicationFunc: String = #function) {
-        if liveApp == true {
-            print("Application moved from <\(from)> to <\(to)>, \(applicationFunc)")
-        }
+    //стало активным
+}
+
+func applicationWillResignActive(_ application: UIApplication) {
+    applicationLive(from: "Acrive", to: "Inactive")
+    //собирается стать не активным
+}
+
+func applicationDidEnterBackground(_ application: UIApplication) {
+    applicationLive(from: "Inactive", to: "Backround")
+    //стало не активным
+}
+
+func applicationWillEnterForeground(_ application: UIApplication) {
+    applicationLive(from: "Backround", to: "Inactive")
+    // собирается вернуться в активное
+}
+
+func applicationWillTerminate(_ application: UIApplication) {
+    applicationLive(from: "Backround", to: "Suspend")
+    //завершил работу
+}
+
+func applicationLive(from: String, to: String, applicationFunc: String = #function) {
+    if liveApp == true {
+        print("Application moved from <\(from)> to <\(to)>, \(applicationFunc)")
     }
 }
 

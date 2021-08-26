@@ -8,6 +8,7 @@
 import UIKit
 
 class ClassicTheme: ThemeModel {
+    
     var backgroundColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     var navigationBarStyle: UIBarStyle = .default
     // текст - Имя чата, заголовок чата, имя профиля, описание профиля
@@ -27,4 +28,6 @@ class ClassicTheme: ThemeModel {
     var senderText: UIColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     //цвет текста сообщения список диалогов
     var listText: UIColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    
+    var borderColor: CGColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 }

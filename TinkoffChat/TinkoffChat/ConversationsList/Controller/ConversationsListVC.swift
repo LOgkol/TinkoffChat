@@ -19,7 +19,8 @@ class ConversationsListVC: UIViewController {
         themeVC.themeClosure = { [weak self] theme in
             guard let self = self else { return }
             Theme.settingTheme = theme
-            self.configureTheme(theme)
+            //            self.configureTheme(theme)
+            self.themeClosure()
         }
         
         self.navigationController?.pushViewController(themeVC, animated: true)
@@ -39,6 +40,7 @@ class ConversationsListVC: UIViewController {
         
         CustomView.addRadiusWidth(views: [goProfileVC], width: 2)
         goProfileVC.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapBarButtonImage)))
+        themeClosure()
     }
     
     @objc func tapBarButtonImage(_ sender: Any) {
@@ -50,16 +52,18 @@ class ConversationsListVC: UIViewController {
     }
     
     //MARK: Theme
-    private func configureTheme(_ theme: ThemeModel){
-        UITableView.appearance().backgroundColor = theme.backgroundColor
-        UITableViewCell.appearance().backgroundColor = theme.backgroundColor
-
+    
+    private func themeClosure() {
+        UITableView.appearance().backgroundColor = Theme.settingTheme.backgroundColor
+        UITableViewCell.appearance().backgroundColor = Theme.settingTheme.backgroundColor
+        
         tableView?.reloadData()
-        imageThemeVC.tintColor = theme.textColor
-
-        self.navigationController?.navigationBar.barStyle = theme.navigationBarStyle
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.textColor]
-        self.view.backgroundColor = theme.backgroundColor
+        imageThemeVC.tintColor = Theme.settingTheme.textColor
+        
+        self.navigationController?.navigationBar.barStyle = Theme.settingTheme.navigationBarStyle
+        self.navigationController?.navigationBar.tintColor = Theme.settingTheme.textColor
+//        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Theme.settingTheme.textColor]
+        self.view.backgroundColor = Theme.settingTheme.backgroundColor
     }
 }
 
@@ -86,8 +90,8 @@ extension ConversationsListVC: UITableViewDataSource {
         cell.hasUnreadMessages = conversationDateArray.hasUnreadMessages
         
         if conversationDateArray.image != nil {
-        cell.image = conversationDateArray.image
-        cell.imageName?.isHidden = true
+            cell.image = conversationDateArray.image
+            cell.imageName?.isHidden = true
         } else {
             cell.image = nil
             let imageText = conversationDateArray.name?.components(separatedBy: " ").map { String($0.prefix(1))}.joined()

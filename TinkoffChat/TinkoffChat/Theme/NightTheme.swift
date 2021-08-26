@@ -27,5 +27,7 @@ class NightTheme: ThemeModel {
     var senderText: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     //цвет текста сообщения список диалогов
     var listText: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    
+    var borderColor: CGColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
 }
 
